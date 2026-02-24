@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Admin - Raudhatul Athfal Al-Rahman</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="./logo.png" class="logo">
+                    <span>Raudhatul Athfal Al-Rahman</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+                    <li><a href="index.html#about"><i class="fas fa-info-circle"></i> Tentang Kami</a></li>
+                    <li><a href="status.html"><i class="fas fa-search"></i> Cek Status</a></li>
+                    <li><a href="daftar.html" class="btn-daftar"><i class="fas fa-user-plus"></i> Daftar Sekarang</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Login Section -->
+    <section class="section">
+        <div class="container">
+            <div class="login-container">
+                <h2 class="login-title">
+                    <i class="fas fa-user-shield"></i> Login Admin
+                </h2>
+                <p style="text-align: center; margin-bottom: 2rem; color: var(--text-color);">
+                    Masukkan username dan password untuk mengakses halaman admin
+                </p>
+
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" class="form-control"
+                            placeholder="Masukkan username" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" class="form-control"
+                            placeholder="Masukkan password" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+                </form>
+
+                <div style="text-align: center; margin-top: 1.5rem;">
+                    <a href="index.html" style="color: var(--secondary-color);">
+                        <i class="fas fa-arrow-left"></i> Kembali ke Halaman Utama
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-school"></i> R.A Al-Rahman</h3>
+                    <p>Membentuk generasi emas yang unggul dalam teknologi dan berakhlakul karimah</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Tautan Cepat</h3>
+                    <a href="index.html">Beranda</a>
+                    <a href="daftar.html">Pendaftaran</a>
+                    <a href="status.html">Cek Status</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Kontak</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Jl. GajahMada No.225 kalinilam, Ketapang Kalbar</p>
+                    <p><i class="fas fa-phone"></i> 0812-5062-0442</p>
+                    <p><i class="fas fa-envelope"></i> ra.alrahman66@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 R.A Al-Rahman. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/admin.js"></script>
+    <script>
+        // Initialize login
+        document.addEventListener('DOMContentLoaded', function () {
+            initLogin();
+        });
+    </script>
+</body>
+
+</html>

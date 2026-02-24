@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek Status Pendaftaran - SMK Telekomunikasi Indonesia</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-school"></i>
+                    <span>SMK Telkom Indonesia</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+                    <li><a href="index.html#about"><i class="fas fa-info-circle"></i> Tentang Kami</a></li>
+                    <li><a href="status.html"><i class="fas fa-search"></i> Cek Status</a></li>
+                    <li><a href="daftar.html" class="btn-daftar"><i class="fas fa-user-plus"></i> Daftar Sekarang</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Status Check Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="form-title">Cek Status Pendaftaran</h2>
+            <p style="text-align: center; margin-bottom: 2rem; color: var(--text-color);">
+                Masukkan nomor pendaftaran atau email yang Anda gunakan saat mendaftar
+            </p>
+
+            <div class="status-search">
+                <form id="statusForm">
+                    <div class="form-group">
+                        <div style="display: flex; gap: 10px;">
+                            <input type="text" id="statusQuery" class="form-control"
+                                placeholder="Masukkan nomor pendaftaran atau email" required>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-search"></i> Cek Status
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Status Result -->
+            <div id="statusResult" style="display: none;"></div>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="section" style="background-color: var(--white);">
+        <div class="container">
+            <h2 class="section-title">Status Pendaftaran</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-clock" style="color: var(--warning-color);"></i>
+                    <h3>Dalam Proses</h3>
+                    <p>Pendaftaran Anda sedang dalam proses verifikasi. Mohon tunggu pengumuman lebih lanjut.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-check-circle" style="color: var(--success-color);"></i>
+                    <h3>Diterima</h3>
+                    <p>Selamat! Pendaftaran Anda telah diterima. Silakan melakukan daftar ulang sesuai petunjuk.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-times-circle" style="color: var(--danger-color);"></i>
+                    <h3>Ditolak</h3>
+                    <p>Mohon maaf, pendaftaran Anda tidak dapat dilanjutkan. Silakan hubungi pihak sekolah untuk
+                        informasi lebih lanjut.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Help Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Butuh Bantuan?</h2>
+            <div class="form-container" style="max-width: 600px;">
+                <div class="feature-card" style="text-align: left;">
+                    <h3><i class="fas fa-headset"></i> Hubungi Kami</h3>
+                    <p style="margin-top: 1rem;">Jika Anda mengalami kesulitan dalam pengecekan status atau pertanyaan
+                        lainnya, silakan hubungi:</p>
+                    <ul style="list-style: none; margin-top: 1rem;">
+                        <li style="margin-bottom: 0.5rem;"><i class="fas fa-phone"></i> (021) 1234-5678</li>
+                        <li style="margin-bottom: 0.5rem;"><i class="fas fa-envelope"></i> info@smktelkom.ac.id</li>
+                        <li><i class="fab fa-whatsapp"></i> 0812-3456-7890</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-school"></i> SMK Telkom Indonesia</h3>
+                    <p>Membentuk generasi emas yang unggul dalam teknologi dan berakhlakul karimah</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Tautan Cepat</h3>
+                    <a href="index.html">Beranda</a>
+                    <a href="daftar.html">Pendaftaran</a>
+                    <a href="status.html">Cek Status</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Kontak</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Jl. Teknologi No. 123, Jakarta</p>
+                    <p><i class="fas fa-phone"></i> (021) 1234-5678</p>
+                    <p><i class="fas fa-envelope"></i> info@smktelkom.ac.id</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 SMK Telekomunikasi Indonesia. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Initialize status check
+        document.addEventListener('DOMContentLoaded', function () {
+            initStatusCheck();
+        });
+    </script>
+</body>
+
+</html>

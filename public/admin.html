@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - R.A Al-Rahman</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕌</text></svg>">
+    <style>
+        :root {
+            --primary-color: #16a34a;
+            --secondary-color: #15803d;
+            --accent-color: #fbbf24;
+            --white: #ffffff;
+            --light-bg: #f0fdf4;
+            --text-color: #374151;
+            --border-color: #d1d5db;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Admin Container -->
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <h2><i class="fas fa-user-shield"></i> Admin Panel</h2>
+            <ul class="admin-menu">
+                <li><a href="#" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="#" onclick="openModal('addModal'); return false;"><i class="fas fa-user-plus"></i> Tambah
+                        Siswa</a></li>
+                <li><a href="index.html"><i class="fas fa-home"></i> Lihat Website</a></li>
+                <li><a href="#" onclick="logout(); return false;"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Admin Header -->
+            <div class="admin-header">
+                <h1><i class="fas fa-tachometer-alt"></i> Dashboard Admin</h1>
+                <div>
+                    <span style="margin-right: 1rem;">Selamat datang, Admin!</span>
+                    <button class="btn btn-sm btn-danger" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </div>
+
+            <!-- Statistics Cards -->
+            <div class="admin-stats">
+                <div class="stat-card">
+                    <h3 id="totalStudents">0</h3>
+                    <p><i class="fas fa-users"></i> Total Siswa</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="verifiedStudents">0</h3>
+                    <p><i class="fas fa-check-circle"></i> Terverifikasi</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="pendingStudents">0</h3>
+                    <p><i class="fas fa-clock"></i> Dalam Proses</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="acceptedStudents">0</h3>
+                    <p><i class="fas fa-check"></i> Diterima</p>
+                </div>
+            </div>
+
+            <!-- Students Table -->
+            <div class="table-container">
+                <div class="table-header">
+                    <h2><i class="fas fa-users"></i> Data Siswa</h2>
+                    <div class="table-search">
+                        <input type="text" id="searchInput" placeholder="Cari siswa...">
+                        <select id="statusFilter" class="form-control" style="width: auto;">
+                            <option value="">Semua Status</option>
+                            <option value="Dalam Proses">Dalam Proses</option>
+                            <option value="Diterima">Diterima</option>
+                            <option value="Ditolak">Ditolak</option>
+                        </select>
+                        <button class="btn btn-sm btn-primary" onclick="openModal('addModal');">
+                            <i class="fas fa-plus"></i> Tambah
+                        </button>
+                    </div>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No. Pendaftaran</th>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>No. HP</th>
+                            <th>Status</th>
+                            <th>Verifikasi</th>
+                            <th>Tgl Daftar</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentsTableBody">
+                        <tr>
+                            <td colspan="8" class="text-center"><i class="fas fa-spinner fa-spin"></i> Memuat data...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Student Modal -->
+    <div id="addModal" class="modal">
+        <div class="modal-content" style="max-width: 700px; max-height: 90vh; overflow-y: auto;">
+            <div class="modal-header">
+                <h2><i class="fas fa-user-plus"></i> Tambah Siswa Baru</h2>
+                <button class="modal-close" onclick="closeModal('addModal')">&times;</button>
+            </div>
+            <form id="addStudentForm">
+                <!-- Data Anak -->
+                <h4
+                    style="color: var(--primary-color); margin: 1rem 0 0.5rem; border-bottom: 1px solid #ddd; padding-bottom: 0.5rem;">
+                    <i class="fas fa-baby"></i> Data Anak
+                </h4>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="addFullName">Nama Lengkap Anak *</label>
+                        <input type="text" id="addFullName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="addPlaceOfBirth">Tempat Lahir *</label>
+                        <input type="text" id="addPlaceOfBirth" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="addDateOfBirth">Tanggal Lahir *</label>
+                        <input type="date" id="addDateOfBirth" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="addGender">Jenis Kelamin *</label>
+                        <select id="addGender" class="form-control" required>
+                            <option value="">Pilih</option>
+                            <option value="Laki-laki">Laki-laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="addAddress">Alamat Lengkap *</label>
+                    <textarea id="addAddress" class="form-control" rows="2" required></textarea>
+                </div>
+
+                <!-- Data Orang Tua -->
+                <h4
+                    style="color: var(--primary-color); margin: 1rem 0 0.5rem; border-bottom: 1px solid #ddd; padding-bottom: 0.5rem;">
+                    <i class="fas fa-address-book"></i> Data Orang Tua/Wali
+                </h4>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="addFatherName">Nama Ayah *</label>
+                        <input type="text" id="addFatherName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="addFatherJob">Pekerjaan Ayah *</label>
+                        <input type="text" id="addFatherJob" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="addMotherName">Nama Ibu *</label>
+                        <input type="text" id="addMotherName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="addMotherJob">Pekerjaan Ibu *</label>
+                        <input type="text" id="addMotherJob" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="addParentPhone">No. HP Orang Tua *</label>
+                        <input type="tel" id="addParentPhone" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="addEmail">Email *</label>
+                        <input type="email" id="addEmail" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="addStatus">Status Pendaftaran</label>
+                    <select id="addStatus" class="form-control">
+                        <option value="Dalam Proses">Dalam Proses</option>
+                        <option value="Diterima">Diterima</option>
+                        <option value="Ditolak">Ditolak</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('addModal')">Batal</button>
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-save"></i> Simpan
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Student Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content" style="max-width: 700px; max-height: 90vh; overflow-y: auto;">
+            <div class="modal-header">
+                <h2><i class="fas fa-edit"></i> Edit Data Siswa</h2>
+                <button class="modal-close" onclick="closeModal('editModal')">&times;</button>
+            </div>
+            <form id="editStudentForm">
+                <!-- Data Anak -->
+                <h4
+                    style="color: var(--primary-color); margin: 1rem 0 0.5rem; border-bottom: 1px solid #ddd; padding-bottom: 0.5rem;">
+                    <i class="fas fa-baby"></i> Data Anak
+                </h4>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editFullName">Nama Lengkap Anak *</label>
+                        <input type="text" id="editFullName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editPlaceOfBirth">Tempat Lahir *</label>
+                        <input type="text" id="editPlaceOfBirth" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editDateOfBirth">Tanggal Lahir *</label>
+                        <input type="date" id="editDateOfBirth" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editGender">Jenis Kelamin *</label>
+                        <select id="editGender" class="form-control" required>
+                            <option value="">Pilih</option>
+                            <option value="Laki-laki">Laki-laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="editAddress">Alamat Lengkap *</label>
+                    <textarea id="editAddress" class="form-control" rows="2" required></textarea>
+                </div>
+
+                <!-- Data Orang Tua -->
+                <h4
+                    style="color: var(--primary-color); margin: 1rem 0 0.5rem; border-bottom: 1px solid #ddd; padding-bottom: 0.5rem;">
+                    <i class="fas fa-address-book"></i> Data Orang Tua/Wali
+                </h4>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editFatherName">Nama Ayah *</label>
+                        <input type="text" id="editFatherName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editFatherJob">Pekerjaan Ayah *</label>
+                        <input type="text" id="editFatherJob" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editMotherName">Nama Ibu *</label>
+                        <input type="text" id="editMotherName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editMotherJob">Pekerjaan Ibu *</label>
+                        <input type="text" id="editMotherJob" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editParentPhone">No. HP Orang Tua *</label>
+                        <input type="tel" id="editParentPhone" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editEmail">Email *</label>
+                        <input type="email" id="editEmail" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="editStatus">Status Pendaftaran</label>
+                    <select id="editStatus" class="form-control">
+                        <option value="Dalam Proses">Dalam Proses</option>
+                        <option value="Diterima">Diterima</option>
+                        <option value="Ditolak">Ditolak</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('editModal')">Batal</button>
+                    <button type="submit" class="btn btn-warning">
+                        <i class="fas fa-save"></i> Simpan Perubahan
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- View Student Modal -->
+    <div id="viewModal" class="modal">
+        <div class="modal-content" style="max-width: 700px; max-height: 90vh; overflow-y: auto;">
+            <div class="modal-header">
+                <h2><i class="fas fa-user"></i> Detail Siswa</h2>
+                <button class="modal-close" onclick="closeModal('viewModal')">&times;</button>
+            </div>
+            <div id="studentDetails">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nomor Pendaftaran</label>
+                        <p id="viewRegistrationNumber" style="font-weight: bold; color: var(--primary-color);"></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <div id="viewStatus"></div>
+                    </div>
+                </div>
+
+                <!-- Data Anak -->
+                <h4
+                    style="color: var(--primary-color); margin: 1rem 0 0.5rem; border-bottom: 1px solid #ddd; padding-bottom: 0.5rem;">
+                    <i class="fas fa-baby"></i> Data Anak
+                </h4>
+
+                <div class="form-group">
+                    <label>Nama Lengkap</label>
+                    <p id="viewFullName"></p>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Tempat Lahir</label>
+                        <p id="viewPlaceOfBirth"></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Tanggal Lahir</label>
+                        <p id="viewDOB"></p>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Jenis Kelamin</label>
+                        <p id="viewGender"></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Alamat</label>
+                        <p id="viewAddress"></p>
+                    </div>
+                </div>
+
+                <!-- Data Orang Tua -->
+                <h4
+                    style="color: var(--primary-color); margin: 1rem 0 0.5rem; border-bottom: 1px solid #ddd; padding-bottom: 0.5rem;">
+                    <i class="fas fa-address-book"></i> Data Orang Tua/Wali
+                </h4>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nama Ayah</label>
+                        <p id="viewFatherName"></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Pekerjaan Ayah</label>
+                        <p id="viewFatherJob"></p>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nama Ibu</label>
+                        <p id="viewMotherName"></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Pekerjaan Ibu</label>
+                        <p id="viewMotherJob"></p>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>No. HP Orang Tua</label>
+                        <p id="viewParentPhone"></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <p id="viewEmail"></p>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Verifikasi Email</label>
+                        <div id="viewVerified"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Tanggal Pendaftaran</label>
+                        <p id="viewCreatedAt"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal('viewModal')">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/admin.js"></script>
+    <script>
+        // Initialize admin dashboard
+        document.addEventListener('DOMContentLoaded', function () {
+            initDashboard();
+            initAddStudent();
+            initEditStudent();
+        });
+    </script>
+</body>
+
+</html>

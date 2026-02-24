@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran Siswa Baru - Raudhatul Athfal Al-Rahman</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕌</text></svg>">
+    <style>
+        :root {
+            --primary-color: #16a34a;
+            --secondary-color: #15803d;
+            --accent-color: #fbbf24;
+            --white: #ffffff;
+            --light-bg: #f0fdf4;
+            --text-color: #374151;
+            --border-color: #d1d5db;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="./logo.png" class="logo">
+                    <span>R.A Al-Rahman</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Beranda</a></li>
+                    <li><a href="index.html#about"><i class="fas fa-info-circle"></i> Tentang Kami</a></li>
+                    <li><a href="index.html#keunggulan"><i class="fas fa-star"></i> Keunggulan</a></li>
+                    <li><a href="status.html"><i class="fas fa-search"></i> Cek Status</a></li>
+                    <li><a href="daftar.html" class="btn-daftar"><i class="fas fa-user-plus"></i> Daftar Sekarang</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Registration Form Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="form-title">Formulir Pendaftaran Siswa Baru</h2>
+            <p style="text-align: center; margin-bottom: 2rem; color: var(--text-color);">
+                Isi formulir di bawah dengan lengkap dan benar. Fields dengan tanda * wajib diisi.
+            </p>
+
+            <div class="form-container" style="max-width: 700px;">
+                <form id="registrationForm">
+                    <!-- Personal Information -->
+                    <h3
+                        style="color: var(--primary-color); margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--border-color);">
+                        <i class="fas fa-baby"></i> Data Anak
+                    </h3>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullName">Nama Lengkap Anak *</label>
+                            <input type="text" id="fullName" name="fullName" class="form-control"
+                                placeholder="Masukkan nama lengkap sesuai Akta Kelahiran" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="placeOfBirth">Tempat Lahir *</label>
+                            <input type="text" id="placeOfBirth" name="placeOfBirth" class="form-control"
+                                placeholder="Contoh: Jakarta" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="dateOfBirth">Tanggal Lahir *</label>
+                            <input type="date" id="dateOfBirth" name="dateOfBirth" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Jenis Kelamin *</label>
+                            <select id="gender" name="gender" class="form-control" required>
+                                <option value="">Pilih Jenis Kelamin</option>
+                                <option value="Laki-laki">Laki-laki</option>
+                                <option value="Perempuan">Perempuan</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Alamat Lengkap *</label>
+                        <textarea id="address" name="address" class="form-control"
+                            placeholder="Masukkan alamat lengkap (JL/DP/RT/RW/Kelurahan/Kecamatan/Kota)" rows="3"
+                            required></textarea>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <h3
+                        style="color: var(--primary-color); margin: 2rem 0 1.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--border-color);">
+                        <i class="fas fa-address-book"></i> Informasi Orang Tua/Wali
+                    </h3>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fatherName">Nama Ayah *</label>
+                            <input type="text" id="fatherName" name="fatherName" class="form-control"
+                                placeholder="Masukkan nama lengkap ayah" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fatherJob">Pekerjaan Ayah *</label>
+                            <input type="text" id="fatherJob" name="fatherJob" class="form-control"
+                                placeholder="Contoh: Wiraswasta/Pegawai" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="motherName">Nama Ibu *</label>
+                            <input type="text" id="motherName" name="motherName" class="form-control"
+                                placeholder="Masukkan nama lengkap ibu" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="motherJob">Pekerjaan Ibu *</label>
+                            <input type="text" id="motherJob" name="motherJob" class="form-control"
+                                placeholder="Contoh: Ibu Rumah Tangga/Pegawai" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="parentPhone">No. HP Orang Tua *</label>
+                            <input type="tel" id="parentPhone" name="parentPhone" class="form-control"
+                                placeholder="Contoh: 081234567890" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Orang Tua *</label>
+                            <input type="email" id="email" name="email" class="form-control"
+                                placeholder="contoh@email.com" required>
+                        </div>
+                    </div>
+
+                    <!-- Terms and Conditions -->
+                    <div class="form-group"
+                        style="margin-top: 2rem; background: #f3f4f6; padding: 1.5rem; border-radius: 10px;">
+                        <h4 style="color: var(--primary-color); margin-bottom: 1rem;"><i
+                                class="fas fa-file-contract"></i> Syarat dan Ketentuan</h4>
+                        <ul style="padding-left: 1.5rem; color: var(--text-color); margin-bottom: 1rem;">
+                            <li style="margin-bottom: 0.5rem;">Data yang diisi harus benar dan sesuai dengan dokumen
+                                asli</li>
+                            <li style="margin-bottom: 0.5rem;">Berkas persyaratan harus diupload/diserahkan maksimal 7
+                                hari setelah pendaftaran</li>
+                            <li style="margin-bottom: 0.5rem;">Pendaftaran dianggap sah jika semua persyaratan dipenuhi
+                            </li>
+                            <li style="margin-bottom: 0.5rem;">Informasi terbaru akan dikirim via email dan WhatsApp
+                            </li>
+                        </ul>
+                        <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+                            <input type="checkbox" id="terms" name="terms" required style="margin-top: 5px;">
+                            <span>Saya menyetujui <a href="#" style="color: var(--secondary-color);">syarat dan
+                                    ketentuan</a> yang berlaku. Saya menyatakan bahwa data yang saya isi adalah
+                                benar.</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary"
+                        style="width: 100%; margin-top: 1.5rem; padding: 1rem;">
+                        <i class="fas fa-paper-plane"></i> Daftar Sekarang
+                    </button>
+                </form>
+
+                <!-- Registration Result -->
+                <div id="registrationResult" style="display: none; margin-top: 2rem;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="section" style="background-color: var(--white);">
+        <div class="container">
+            <h2 class="section-title">Informasi Penting</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-calendar-check"></i>
+                    <h3>Tahapan Pendaftaran</h3>
+                    <p>1. Isi formulir registrasi<br>2. Verifikasi email Anda<br>3. Upload Berkas Persyaratan<br>4.
+                        Tunggu pengumuman hasil</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-envelope-open-text"></i>
+                    <h3>Verifikasi Email</h3>
+                    <p>Setelah mendaftar, Anda akan menerima email verifikasi. Klik tautan untuk memverifikasi email
+                        Anda.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-clipboard-check"></i>
+                    <h3>Cek Status</h3>
+                    <p>Gunakan nomor pendaftaran atau email untuk memeriksa status pendaftaran Anda.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-mosque"></i> R.A Islamic School</h3>
+                    <p>Membentuk generasi Qurani yang cerdas, kreatif, dan berakhlakul karimah</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Tautan Cepat</h3>
+                    <a href="index.html">Beranda</a>
+                    <a href="index.html#about">Tentang Kami</a>
+                    <a href="index.html#keunggulan">Keunggulan</a>
+                    <a href="status.html">Cek Status</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Kontak</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Jl. Gajahmadha No.225 Kalinilam,Ketapang, Kalbar</p>
+                    <p><i class="fas fa-phone"></i> 0812-5062-0442</p>
+                    <p><i class="fas fa-envelope"></i> ra.alrahman66@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 R.A Islamic School. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Initialize registration form
+        document.addEventListener('DOMContentLoaded', function () {
+            initRegistrationForm();
+        });
+    </script>
+</body>
+
+</html>
